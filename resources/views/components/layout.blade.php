@@ -103,11 +103,9 @@
         </div>
 
         {{-- Contenido principal --}}
-        <div class="w-full h-full">
-            <main class="text-black p-5 min-h-full w-full">
-                {{ $slot }}
-            </main>
-        </div>
+        <main class="flex-grow flex items-center justify-center text-black p-5"> {{-- Modificamos el main --}}
+            {{ $slot }}
+        </main>
     </div>
 
 </body>

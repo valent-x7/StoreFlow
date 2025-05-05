@@ -1,6 +1,6 @@
 <x-layout title="Perfil">
     
-    <div class="flex items-center justify-center h-screen">
+    <div class="flex items-center justify-center">
         <div class="bg-white/10 w-[42rem] flex flex-col border border-black/10 rounded-md shadow-md p-5">
             <h1 class="text-4xl font-bold text-center mt-2">
                 Perfil
