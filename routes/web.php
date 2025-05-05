@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\LostPasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/products', function() {
     return view('products');
 })->name('products');
+
+// Contraseña olvidada
+Route::get('/lostpassword', LostPasswordController::class)->name('lost-password');
+Route::post('/lostpassword-sendemail', [LostPasswordController::class, 'sendEmail'])->name('sendEmail');
 
 //Log out
 Route::post('/logout', LogoutController::class)->name('logout');

@@ -16,7 +16,7 @@
     </x-label>
     <x-input type="password" :last="true" name="password" placeholder="Ingresa tu contraseña"/>
 
-    <x-link type="right" p_text="" a_text="Se me olvidó mi contraseña" href="#"/>
+    <x-link type="right" p_text="" a_text="Se me olvidó mi contraseña" href="{{ route('lost-password') }}"/>
 
     <div class="mt-3 space-y-2">
         @if ($errors->any())
