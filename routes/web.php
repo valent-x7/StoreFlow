@@ -35,11 +35,11 @@ Route::middleware('auth')->group(function () {
     // Productos
     Route::get('/menu/productos', ProductController::class)->name('products');
     Route::post('/menu/productos', [ProductController::class, 'createProduct'])->name('products.create');
-    // Ruta para eliminar un producto
+    // Eliminar un producto
     Route::delete('/menu/productos/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-    // Ruta para mostrar el formulario de edición
+    // Mostrar el formulario de edición
     Route::get('/menu/productos/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    // Ruta para procesar la actualización del producto
+    // Actualizar el producto
     Route::put('/menu/productos/{product}', [ProductController::class, 'update'])->name('products.update');
 
     // Ingresos

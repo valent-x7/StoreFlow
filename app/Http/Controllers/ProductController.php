@@ -55,18 +55,21 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        // Valida los campos
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
         ]);
 
+        // Actualiza el producto
         $product->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
         ]);
 
+        // Redirige a productos
         return redirect()->route('products')->with('success', 'Producto actualizado exitosamente!');
     }
 }

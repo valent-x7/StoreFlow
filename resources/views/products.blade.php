@@ -1,6 +1,6 @@
 <x-layout title="Productos">
 
-    <div class=" p-5 h-full w-full">
+    <div class="p-5 h-full w-full">
 
         {{-- Mensaje de éxito (inicialmente oculto) --}}
         <div id="success-message" class="bg-green-200 border-green-400 text-green-700 px-4 py-3 rounded relative hidden mb-4" role="alert">
@@ -17,9 +17,9 @@
 
         {{-- Tabla de los productos --}}
         <div class="overflow-x-auto">
-            <div style="max-height: 800px; overflow-y: auto;"> {{-- Ajusta la altura máxima según tus necesidades --}}
+            <div style="max-height: 800px; overflow-y: auto;">
                 <table class="min-w-full leading-normal shadow-md rounded-lg">
-                    <thead class="bg-gray-200 sticky top-0"> {{-- Añade sticky top para que la cabecera se quede visible al hacer scroll --}}
+                    <thead class="bg-gray-200 sticky top-0">
                         <tr>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Nombre
@@ -54,7 +54,11 @@
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
+
+                                    {{-- Actualizar producto --}}
                                     <a href="{{ route('products.edit', $product->id) }}" class="text-white px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-900 mr-5">Editar</a>
+
+                                    {{-- Borrar producto --}}
                                     <form method="POST" action="{{ route('products.destroy', $product->id) }}" class="inline-block">
                                         @csrf
                                         @method('DELETE')
@@ -76,9 +80,6 @@
                 </table>
             </div>
         </div>
-
-
-
 
         {{-- Modal Crear Producto --}}
 
@@ -128,7 +129,6 @@
                 </form>
             </div>
         </div>
-
 
         @if (session('success'))
             <script>
