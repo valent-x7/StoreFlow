@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($validated)){
             $request->session()->regenerate();
-            return redirect()->route('welcome');
+            return redirect()->route('products');
         }
 
         return back()->withErrors([

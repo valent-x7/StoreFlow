@@ -15,26 +15,28 @@ Route::get('/', function () {
 Route::get('/login', LoginController::class)->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.create');
 
+// Contraseña olvidada
+Route::get('/password/lost', LostPasswordController::class)->name('lost-password');
+Route::post('/password/lost', [LostPasswordController::class, 'sendEmail'])->name('sendEmail');
+
 // Register
 Route::get('/register', RegisterController::class)->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
 
 // Forzamos autenticación
-
 Route::middleware('auth')->group(function () {
+
+    // Productos
+    Route::get('/menu/productos', function() {
+        return view('products');
+    })->name('products');
+
+
+
     // Perfil
-    Route::get('/profile', ProfileController::class)->name('profile');
-    Route::post('/profile', [ProfileController::class, 'saveChanges'])->name('profile.save');
+    Route::get('/menu/perfil', ProfileController::class)->name('profile');
+    Route::post('/menu/perfil', [ProfileController::class, 'saveChanges'])->name('profile.save');
+
+    //Log out
+    Route::post('/logout', LogoutController::class)->name('logout');
 });
-
-// Productos
-Route::get('/products', function() {
-    return view('products');
-})->name('products');
-
-// Contraseña olvidada
-Route::get('/lostpassword', LostPasswordController::class)->name('lost-password');
-Route::post('/lostpassword-sendemail', [LostPasswordController::class, 'sendEmail'])->name('sendEmail');
-
-//Log out
-Route::post('/logout', LogoutController::class)->name('logout');
