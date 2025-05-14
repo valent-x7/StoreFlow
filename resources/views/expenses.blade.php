@@ -1,4 +1,4 @@
-<x-layout title="Ingresos">
+<x-layout title="Egresos">
     
     <div class="p-5 h-full w-full">
 
@@ -8,15 +8,15 @@
             <span class="block sm:inline">{{ session('success') }}</span>
         </div>
 
-        {{-- Boton crear nuevo ingreso --}}
+        {{-- Boton crear nuevo egreso --}}
         <div class="flex flex-row justify-end items-center">
-            <button onclick="document.getElementById('modalCrearIngreso').classList.remove('hidden')"
+            <button onclick="document.getElementById('modalCrearEgreso').classList.remove('hidden')"
                 class="bg-[#2ecc71] hover:bg-[#27ae60] text-white font-bold py-2 px-4 rounded cursor-pointer focus:outline-none focus:shadow-outline mb-4">
-                Nuevo ingreso
+                Nuevo egreso
             </button>
         </div>
 
-        {{-- Tabla para mostrar ingresos --}}
+        {{-- Tabla para mostrar egresos --}}
         <div class="overflow-x-auto">
             <div style="max-height: 800px; overflow-y: auto;">
                 <table class="min-w-full leading-normal shadow-md rounded-lg">
@@ -37,30 +37,30 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
-                        @forelse ($incomes as $income)
+                        @forelse ($expenses as $expense)
                             <tr>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $income->name }}
+                                        {{ $expense->name }}
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
                                     <p class="text-gray-900">
-                                        {{ $income->description }}
+                                        {{ $expense->description }}
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        ${{ number_format($income->amount, 2) }}
+                                        ${{ number_format($expense->amount, 2) }}
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
 
                                     {{-- Actualizar producto --}}
-                                    <a href="{{ route('incomes.edit', $income->id) }}" class="text-white px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-900 mr-5">Editar</a>
+                                    <a href="{{ route('expenses.edit', $expense->id) }}" class="text-white px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-900 mr-5">Editar</a>
 
                                     {{-- Borrar producto --}}
-                                    <form method="POST" action="{{ route('incomes.destroy', $income->id) }}" class="inline-block">
+                                    <form method="POST" action="{{ route('expenses.destroy', $expense->id) }}" class="inline-block">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-white px-4 py-2 rounded-md cursor-pointer bg-red-600 hover:bg-red-900"
@@ -73,7 +73,7 @@
                         @empty
                             <tr>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm" colspan="4">
-                                    <p class="text-gray-500 text-center">No hay ingresos registrados.</p>
+                                    <p class="text-gray-500 text-center">No hay egresos registrados.</p>
                                 </td>
                             </tr>
                         @endforelse
@@ -82,34 +82,26 @@
             </div>
         </div>
 
+        {{-- Modal Crear egreso --}}
 
-
-
-
-
-
-
-
-        {{-- Modal Crear Ingreso --}}
-
-        <div id="modalCrearIngreso" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
+        <div id="modalCrearEgreso" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
             <div class="bg-white border border-black/10 rounded-lg shadow-xl p-8 w-full max-w-md relative">
 
                 {{-- Cerrar modal --}}
-                <button onclick="document.getElementById('modalCrearIngreso').classList.add('hidden')"
+                <button onclick="document.getElementById('modalCrearEgreso').classList.add('hidden')"
                         class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
                     <svg class="h-6 w-6 fill-current cursor-pointer" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
 
-                <h2 class="text-xl font-bold mb-4">Crear Ingreso</h2>
+                <h2 class="text-xl font-bold mb-4">Crear Egreso</h2>
 
                 {{-- Formulario --}}
                 <form class="space-y-5"
                     method="POST"
-                    action="{{ route('incomes.create') }}">
+                    action="{{ route('expenses.create') }}">
                     @csrf
 
-                    {{-- Nombre del ingreso --}}
+                    {{-- Nombre del egreso --}}
                     <div>
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
                         <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -129,11 +121,11 @@
                             required>
                     </div>
 
-                    {{-- Guardar producto --}}
+                    {{-- Guardar egreso --}}
                     <div class="flex justify-end items-center">
                         <button type="submit"
                             class="bg-[#2ecc71] hover:bg-[#27ae60] cursor-pointer text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            Guardar ingreso
+                            Guardar egreso
                         </button>
                     </div>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -50,13 +51,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('menu/ingresos/{income}', [IncomeController::class, 'destroy'])->name('incomes.destroy');
     // Mostrar formulario de edición
     Route::get('/menu/ingresos/{income}/edit', [IncomeController::class, 'edit'])->name('incomes.edit');
-    // Actualizar el producto
+    // Actualizar el ingreso
     Route::put('/menu/ingresos/{income}', [IncomeController::class, 'update'])->name('incomes.update');
 
-
-
-
     // Egresos
+    Route::get('/menu/egresos', ExpenseController::class)->name('expenses');
+    Route::post('/menu/egresos/', [ExpenseController::class, 'createExpense'])->name('expenses.create');
+    // Eliminar egreso
+    Route::delete('menu/egresos/{expense}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
+    // Mostrar formulario de edición
+    Route::get('/menu/egresos/{expense}/edit', [ExpenseController::class, 'edit'])->name('expenses.edit');
+    // Actualizar el egreso
+    Route::put('/menu/egresos/{expense}', [ExpenseController::class, 'update'])->name('expenses.update');
+
 
 
     // Perfil

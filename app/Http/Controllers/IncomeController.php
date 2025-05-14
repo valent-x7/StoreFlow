@@ -27,7 +27,7 @@ class IncomeController extends Controller
 
         // Crear nuevo ingreso
         $income = new Income();
-        $income->name = request()->input('name');
+        $income->name = $request->input('name');
         $income->description = $request->input('description');
         $income->amount = $request->input('amount');
         $income->user_id = Auth::id(); // Asignar id del usuario

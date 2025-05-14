@@ -84,7 +84,7 @@
         {{-- Modal Crear Producto --}}
 
         <div id="modalCrearProducto" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
-            <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md relative">
+            <div class="bg-white border border-black/10 rounded-lg shadow-xl p-8 w-full max-w-md relative">
 
                 {{-- Cerrar modal --}}
                 <button onclick="document.getElementById('modalCrearProducto').classList.add('hidden')"
@@ -103,7 +103,8 @@
                     {{-- Nombre del producto --}}
                     <div>
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
-                        <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        required>
                     </div>
 
                     {{-- Descripcion --}}
@@ -115,7 +116,8 @@
                     {{-- Costo --}}
                     <div>
                         <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Precio:</label>
-                        <input type="number" id="price" name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="number" id="price" name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            required>
                     </div>
 
                     {{-- Guardar producto --}}
