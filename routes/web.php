@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LostPasswordController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
@@ -28,14 +29,22 @@ Route::post('/password/reset', [ResetPasswordController::class, 'restorePassword
 Route::get('/register', RegisterController::class)->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
 
-// Forzamos autenticación
+// Forzamos autenticación para el menú
 Route::middleware('auth')->group(function () {
 
     // Productos
-    Route::get('/menu/productos', function() {
-        return view('products');
-    })->name('products');
+    Route::get('/menu/productos', ProductController::class)->name('products');
+    Route::post('/menu/productos', [ProductController::class, 'createProduct'])->name('products.create');
+    // Ruta para eliminar un producto
+    Route::delete('/menu/productos/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    // Ruta para mostrar el formulario de edición
+    Route::get('/menu/productos/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    // Ruta para procesar la actualización del producto
+    Route::put('/menu/productos/{product}', [ProductController::class, 'update'])->name('products.update');
 
+    // Ingresos
+
+    // Egresos
 
 
     // Perfil
