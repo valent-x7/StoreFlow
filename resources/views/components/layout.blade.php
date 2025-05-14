@@ -42,8 +42,8 @@
                         </div>
                     </a>
 
-                    <a href=""
-                        class="block hover:bg-white/10 rounded-md py-2 px-5 cursor-pointer text-white">
+                    <a href="{{ route('incomes') }}"
+                        class="block {{ request()->routeIs('incomes') ? 'bg-white/10' : '' }} hover:bg-white/10 rounded-md py-2 px-5 cursor-pointer text-white">
                         <div class="flex items-center space-x-5">
                             <i class="fa-solid fa-money-bill-trend-up"></i>
                             <span>Ingresos</span>

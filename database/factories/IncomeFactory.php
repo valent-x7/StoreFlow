@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Income>
  */
-class ProductFactory extends Factory
+class IncomeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,7 +21,7 @@ class ProductFactory extends Factory
         return [
             'name' => $name,
             'description' => fake()->paragraph(),
-            'price' => fake()->randomFloat(2, 10, 10000),
+            'amount' => fake()->randomFloat(2, 10, 10000),
             'user_id' => User::factory(),
             'created_at' => now(),
             'updated_at' => now(),

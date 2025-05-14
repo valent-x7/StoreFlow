@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LostPasswordController;
@@ -43,6 +44,17 @@ Route::middleware('auth')->group(function () {
     Route::put('/menu/productos/{product}', [ProductController::class, 'update'])->name('products.update');
 
     // Ingresos
+    Route::get('/menu/ingresos', IncomeController::class)->name('incomes');
+    Route::post('/menu/ingresos', [IncomeController::class, 'createIncome'])->name('incomes.create');
+    // Eliminar ingreso
+    Route::delete('menu/ingresos/{income}', [IncomeController::class, 'destroy'])->name('incomes.destroy');
+    // Mostrar formulario de edición
+    Route::get('/menu/ingresos/{income}/edit', [IncomeController::class, 'edit'])->name('incomes.edit');
+    // Actualizar el producto
+    Route::put('/menu/ingresos/{income}', [IncomeController::class, 'update'])->name('incomes.update');
+
+
+
 
     // Egresos
 
