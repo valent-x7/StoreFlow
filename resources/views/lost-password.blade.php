@@ -13,7 +13,7 @@
     <div class="flex flex-col h-full">
 
         {{-- NavBar --}}
-        <div class="mx-5 px-10 py-2 border-b border-black/10 font-primary">
+        <div class="mx-5 px-10 py-4 border-b border-black/10 font-primary">
             
             <nav class="flex justify-between items-center">
                 <div>
@@ -27,7 +27,7 @@
                     
                     <a href="{{ route('login') }}">
                         <button
-                            class="text-white bg-[#0066cc] text-xl font-medium px-2 py-3 cursor-pointer rounded-md hover:bg-[#0052a3]">
+                            class="text-white bg-[#0066cc] text-xl font-medium px-4 py-2 cursor-pointer rounded-md hover:bg-[#0052a3]">
                             Iniciar sesión
                         </button>
                     </a>
@@ -50,7 +50,9 @@
                     Ingresa tu correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.
                 </p>
 
-                <form method="POST" action="{{ route('sendEmail') }}" class="space-y-4">
+                <form method="POST"
+                    action="{{ route('sendEmail') }}"
+                    class="space-y-4">
                     @csrf
 
                     <div>
@@ -71,7 +73,7 @@
                     @enderror
 
                     <button type="submit"
-                        class="w-full text-white bg-[#0066cc] text-xl font-medium px-2 py-3 cursor-pointer rounded-md hover:bg-[#0052a3]">
+                        class="w-full text-white bg-[#0066cc] text-xl font-medium px-4 py-2 cursor-pointer rounded-md hover:bg-[#0052a3]">
                         Enviar correo de recuperación
                     </button>
 
