@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Income;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -29,6 +31,7 @@ class ProductController extends Controller
         $product = New Product();
         $product->name = $request->input('name');
         $product->description = $request->input('description');
+        $product->quantity = $request->input('quantity');
         $product->price = $request->input('price');
         $product->user_id = Auth::id(); // Asignar id del usuario
 
@@ -48,17 +51,20 @@ class ProductController extends Controller
         return redirect()->route('products')->with('success', 'Producto eliminado exitosamente!');
     }
 
+    // Mostrar vista para editar producto
     public function edit(Product $product)
     {
         return view('edit-product', compact('product'));
     }
 
+    // Actualizar
     public function update(Request $request, Product $product)
     {
         // Valida los campos
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'quantity' => 'required|numeric|min:1',
             'price' => 'required|numeric|min:0',
         ]);
 
@@ -66,10 +72,11 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
+            'quantity' => $request->input('quantity'),
             'price' => $request->input('price'),
         ]);
 
         // Redirige a productos
-        return redirect()->route('products')->with('success', 'Producto actualizado exitosamente!');
+        return redirect()->route('products.edit', $product->id)->with('success', 'Producto actualizado exitosamente!');
     }
 }

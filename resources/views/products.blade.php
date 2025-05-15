@@ -28,6 +28,9 @@
                                 Descripción
                             </th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Cantidad
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Precio
                             </th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -38,16 +41,25 @@
                     <tbody class="bg-white">
                         @forelse ($products as $product)
                             <tr>
+                                {{-- Nombre --}}
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                         {{ $product->name }}
                                     </p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                {{-- Descripcion --}}
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm max-w-lg">
                                     <p class="text-gray-900">
                                         {{ $product->description }}
                                     </p>
                                 </td>
+                                {{-- Cantidad --}}
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-center">
+                                        {{ number_format($product->quantity) }}
+                                    </p>
+                                </td>
+                                {{-- Precio --}}
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                         ${{ number_format($product->price, 2) }}
@@ -56,7 +68,7 @@
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
 
                                     {{-- Actualizar producto --}}
-                                    <a href="{{ route('products.edit', $product->id) }}" class="text-white px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-900 mr-5">Editar</a>
+                                    <a href="{{ route('products.edit', $product->id) }}" class="text-white px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-900 mr-5">Detalles</a>
 
                                     {{-- Borrar producto --}}
                                     <form method="POST" action="{{ route('products.destroy', $product->id) }}" class="inline-block">
@@ -71,7 +83,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm" colspan="4">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm" colspan="5">
                                     <p class="text-gray-500 text-center">No hay productos registrados.</p>
                                 </td>
                             </tr>
@@ -111,6 +123,13 @@
                     <div>
                         <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
                         <textarea id="descritcion" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                    </div>
+
+                    {{-- Cantidad --}}
+                    <div>
+                        <label for="quantity" class="block text-gray-700 text-sm font-bold mb-2">Cantidad:</label>
+                        <input type="number" id="quantity" name="quantity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            required>
                     </div>
 
                     {{-- Costo --}}

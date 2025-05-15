@@ -44,7 +44,7 @@
                                         {{ $income->name }}
                                     </p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm max-w-lg">
                                     <p class="text-gray-900">
                                         {{ $income->description }}
                                     </p>

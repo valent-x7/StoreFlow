@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Models\Income;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/menu/productos/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     // Actualizar el producto
     Route::put('/menu/productos/{product}', [ProductController::class, 'update'])->name('products.update');
+    // Crear ingreso desde producto
+    Route::post('/menu/productos/{product}/create-income', [IncomeController::class, 'productToIncome'])->name('product.to.income');
 
     // Ingresos
     Route::get('/menu/ingresos', IncomeController::class)->name('incomes');
@@ -67,8 +70,8 @@ Route::middleware('auth')->group(function () {
 
 
     // Perfil
-    Route::get('/menu/perfil', ProfileController::class)->name('profile');
-    Route::post('/menu/perfil', [ProfileController::class, 'saveChanges'])->name('profile.save');
+    Route::get('/cuenta/perfil', ProfileController::class)->name('profile');
+    Route::post('/cuenta/perfil', [ProfileController::class, 'saveChanges'])->name('profile.save');
 
     //Log out
     Route::post('/logout', LogoutController::class)->name('logout');

@@ -21,8 +21,9 @@ class ProductFactory extends Factory
         return [
             'name' => $name,
             'description' => fake()->paragraph(),
+            'quantity' => fake()->randomNumber(2),
             'price' => fake()->randomFloat(2, 10, 10000),
-            'user_id' => User::factory(),
+            'user_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ];

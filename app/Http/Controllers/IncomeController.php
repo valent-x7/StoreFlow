@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Income;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class IncomeController extends Controller
 {
@@ -71,6 +73,48 @@ class IncomeController extends Controller
         // Redirige a ingresos
         return redirect()->route('incomes')->with('success', 'Ingreso actualizado exitosamente!');
     }
+    
+    // Añadir ingreso desde un producto
+    public function productToIncome(Request $request, Product $product)
+    {
+        // Validar datos
+        $request->validate([
+            'quantity_to_income' => ['required', 'integer', 'min:1', 'max:' . $product->quantity],
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'price' => ['required', 'numeric', 'min:0'],
+        ]);
 
+        DB::beginTransaction();
+
+        try {
+            $quantityToIncome = $request->input('quantity_to_income');
+            $totalAmount = $quantityToIncome * $request->input('price');
+
+            // Crear el nuevo ingreso
+            $income = new Income();
+            $income->name = $request->input('name');
+            $income->description = $request->input('description');
+            $income->amount = $totalAmount;
+            $income->user_id = Auth::id();
+            $income->save();
+
+            // Reducir la cantidad del producto
+            $product->decrement('quantity', $quantityToIncome);
+
+            // Commitear la transacción si todo salió bien
+            DB::commit();
+
+            // Redirigir con mensaje de éxito
+            return redirect()->route('incomes')->with('success', 'Ingreso añadido y cantidad de producto actualizada.');
+
+        }
+        catch (\Exception $e)
+        {
+            // Si ocurre algún error, hacer rollback de la transacción
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Hubo un error al añadir el ingreso y actualizar la cantidad del producto.');
+        }
+    }
 
 }
