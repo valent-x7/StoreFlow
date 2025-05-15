@@ -24,13 +24,15 @@ class IncomeController extends Controller
         $request->validate([
             'name' => ['string', 'required', 'max:50'],
             'description' => ['nullable', 'string'],
-            'amount' => ['required', 'numeric', 'min:0']
+            'amount' => ['required', 'numeric', 'min:0'],
+            'created_at' => ['nullable', 'date']
         ]);
 
         // Crear nuevo ingreso
         $income = new Income();
         $income->name = $request->input('name');
         $income->description = $request->input('description');
+        $income->created_at = $request->input('created_at');
         $income->amount = $request->input('amount');
         $income->user_id = Auth::id(); // Asignar id del usuario
 
@@ -60,6 +62,7 @@ class IncomeController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'created_at' => 'nullable|date',
             'amount' => 'required|numeric|min:0',
         ]);
 
@@ -67,6 +70,7 @@ class IncomeController extends Controller
         $income->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
+            'created_at' => $request->input('created_at'),
             'amount' => $request->input('amount'),
         ]);
 

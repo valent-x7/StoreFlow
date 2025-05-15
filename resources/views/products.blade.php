@@ -55,7 +55,7 @@
                                 </td>
                                 {{-- Cantidad --}}
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">
+                                    <p class="text-gray-900 whitespace-no-wrap">
                                         {{ number_format($product->quantity) }}
                                     </p>
                                 </td>

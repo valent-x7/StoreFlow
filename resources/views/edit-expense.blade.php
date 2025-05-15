@@ -17,6 +17,13 @@
                 <textarea id="description" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $expense->description }}</textarea>
             </div>
 
+            {{-- Fecha de creacion --}}
+            <div>
+                <label for="created_at" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Registro:</label>
+                <input type="date" id="created_at" name="created_at" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    value="{{ $expense->created_at->format('Y-m-d') }}">
+            </div>
+
             <div>
                 <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Cantidad:</label>
                 <input type="number" id="amount" name="amount" value="{{ $expense->amount }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">

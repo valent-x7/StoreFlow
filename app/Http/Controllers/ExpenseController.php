@@ -21,13 +21,15 @@ class ExpenseController extends Controller
         $request->validate([
             'name' => ['string', 'required', 'max:50'],
             'description' => ['nullable', 'string'],
-            'amount' => ['required', 'numeric', 'min:0']
+            'amount' => ['required', 'numeric', 'min:0'],
+            'created_at' => ['nullable', 'date'],
         ]);
 
         // Crear nuevo egreso
         $expense = new Expense();
         $expense->name = $request->input('name');
         $expense->description = $request->input('description');
+        $expense->created_at = $request->input('created_at');
         $expense->amount = $request->input('amount');
         $expense->user_id = Auth::id(); // Asignar id del usuario
 
@@ -58,12 +60,14 @@ class ExpenseController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'amount' => 'required|numeric|min:0',
+            'created_at' => 'nullable|date',
         ]);
 
         // Actualiza el egreso
         $expense->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
+            'created_at' => $request->input('created_at'),
             'amount' => $request->input('amount'),
         ]);
 

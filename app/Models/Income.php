@@ -14,6 +14,12 @@ class Income extends Model
         'name',
         'description',
         'amount',
+        'created_at', // Permite la asignación masiva de created_at
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
 }

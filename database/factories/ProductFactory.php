@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -17,7 +18,35 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $name = $this->faker->unique()->sentence(3);
+        $productNames = [
+            'Camiseta de Algodón Talla M',
+            'Pantalón Vaquero Azul Talla 32',
+            'Zapatillas Deportivas Talla 40',
+            'Mochila Urbana 20L',
+            'Laptop HP Pavilion 15"',
+            'Smartphone Samsung Galaxy S23',
+            'Tablet Amazon Fire HD 10',
+            'Auriculares Inalámbricos Bluetooth',
+            'Smartwatch Deportivo',
+            'Botella de Agua Reutilizable 1L',
+            'Libreta de Tapa Dura A5',
+            'Bolígrafo de Tinta Negra (Paquete de 10)',
+            'Lámpara de Escritorio LED',
+            'Silla de Oficina Ergonómica',
+            'Monitor LED 24"',
+            'Teclado Inalámbrico',
+            'Ratón Inalámbrico',
+            'Disco Duro Externo 1TB',
+            'Impresora Multifunción',
+            'Cafetera Eléctrica',
+            'Taza de Cerámica',
+            'Juego de Sábanas de Algodón (Matrimonial)',
+            'Toalla de Baño de Algodón',
+            'Cesto de Ropa Sucia',
+        ];
+
+        $name = $this->faker->unique()->randomElement(Arr::shuffle($productNames));
+        
         return [
             'name' => $name,
             'description' => fake()->paragraph(),

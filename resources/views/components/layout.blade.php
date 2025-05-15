@@ -7,9 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
+
+    <link rel="icon" href="{{ asset('images/storeflow.png') }}" type="image/png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
+
+    {{-- Incluye la librería de Chart.js --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     @vite('resources/css/app.css')
 </head>
 <body class="h-screen">
@@ -58,11 +65,11 @@
                         </div>
                     </a>
 
-                    <a href=""
+                    <a href="{{ route('charts') }}"
                         class="block hover:bg-white/10 rounded-md py-2 px-5 cursor-pointer text-white">
                         <div class="flex items-center space-x-5">
-                            <i class="fa-solid fa-gear"></i>
-                            <span>Configuración</span>
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Gráficos</span>
                         </div>
                     </a>
 
@@ -107,6 +114,9 @@
             {{ $slot }}
         </main>
     </div>
+
+    {{-- Contenedor para scripts específicos de la página --}}
+    @stack('scripts')
 
 </body>
 </html>

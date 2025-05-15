@@ -2,6 +2,13 @@
 
     <div class="p-5 h-full w-full">
 
+        @if ($product->quantity <= 5)
+            <div id="stock_low" class="bg-red-200 border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">¡Alerta!</strong>
+                <span class="block sm:inline">Stock bajo del producto</span>
+            </div>
+        @endif
+
         {{-- Mensaje de éxito (inicialmente oculto) --}}
         <div id="success-message" class="bg-green-200 border-green-400 text-green-700 px-4 py-3 rounded relative hidden mb-4" role="alert">
             <strong class="font-bold">¡Éxito!</strong>
@@ -146,10 +153,12 @@
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('success-message').classList.remove('hidden');
+                    document.getElementById('stock_low').classList.add('hidden');
 
                     // Ocultar el mensaje después de unos segundos
                     setTimeout(function() {
                         document.getElementById('success-message').classList.add('hidden');
+                        document.getElementById('stock_low').classList.remove('hidden');
                     }, 3000); // Ocultar después de 3 segundos (3000 milisegundos)
                 });
             </script>

@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Income;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class IncomeSeeder extends Seeder
 {
@@ -13,8 +15,13 @@ class IncomeSeeder extends Seeder
      */
     public function run(): void
     {
-        // Llama a Factory de Incomes
-        Income::factory()->count(20)->create();
+        $user = User::find(1);
+
+        if($user)
+        {
+            // Llama a Factory de Incomes
+            Income::factory()->count(20)->create();
+        }
 
     }
 }

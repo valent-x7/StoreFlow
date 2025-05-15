@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LoginController;
@@ -67,6 +68,8 @@ Route::middleware('auth')->group(function () {
     // Actualizar el egreso
     Route::put('/menu/egresos/{expense}', [ExpenseController::class, 'update'])->name('expenses.update');
 
+    // Gráficos
+    Route::get('/menu/graficos', ChartsController::class)->name('charts');
 
 
     // Perfil

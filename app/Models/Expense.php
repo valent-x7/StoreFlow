@@ -14,8 +14,12 @@ class Expense extends Model
         'name',
         'description',
         'amount',
+        'created_at',
     ];
 
-
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
 }

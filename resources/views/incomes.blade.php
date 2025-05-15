@@ -29,6 +29,9 @@
                                 Descripción
                             </th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Fecha de registro
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Cantidad
                             </th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -47,6 +50,11 @@
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm max-w-lg">
                                     <p class="text-gray-900">
                                         {{ $income->description }}
+                                    </p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm max-w-lg">
+                                    <p class="text-gray-900">
+                                        {{ $income->created_at->format('d-m-Y') }}
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
@@ -72,7 +80,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm" colspan="4">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm" colspan="5">
                                     <p class="text-gray-500 text-center">No hay ingresos registrados.</p>
                                 </td>
                             </tr>
@@ -81,14 +89,6 @@
                 </table>
             </div>
         </div>
-
-
-
-
-
-
-
-
 
         {{-- Modal Crear Ingreso --}}
 
@@ -120,6 +120,13 @@
                     <div>
                         <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
                         <textarea id="descritcion" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                    </div>
+
+                    {{-- Fecha de creacion --}}
+                    <div>
+                        <label for="created_at" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Registro:</label>
+                        <input type="date" id="created_at" name="created_at" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            value="{{ now()->format('Y-m-d') }}">
                     </div>
 
                     {{-- Cantidad --}}

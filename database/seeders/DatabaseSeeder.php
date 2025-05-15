@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
 
         // Ejecutar ProductSeeder
         $this->call(ProductSeeder::class);
+        $this->call(ExpenseSeeder::class);
+        $this->call(IncomeSeeder::class);
 
         // Ejecutar IncomeSeeder
         // $this->call(IncomeSeeder::class);
